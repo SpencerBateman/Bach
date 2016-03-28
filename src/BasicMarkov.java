@@ -18,15 +18,17 @@ import java.util.*;
 public final class BasicMarkov {
   public static void main(String[] args) {
     // A map for our musical pitches
-    int[] map = {63, 66, 68, 70, 73};
+    int[] map = {65, 67, 69, 70, 72, 74, 64};
 
     // A multidimensional array representing our markov matrix
     double[][] markovMatrix = {
-            {0, .66, 0, 0, .33},
-            {0, 0, 1, 0, 0},
-            {.5, 0, 0, .5, 0},
-            {1, 0, 0, 0, 0},
-            {1, 0, 0, 0, 0}};
+            {.21, .31, 0, 0, 0, 0, .46},
+            {.78, .07, .02, .05, .05, 0, 0},
+            {.33, .66, 0, 0, 0, 0, 0},
+            {0, .125, .625, .25, 0, 0, 0},
+            {0, 0, 0, .33, .66, 0, 0},
+            {0, 0, 0, 0, 0, 0, 1},
+            {.79, .06, 0, 0, 0, .13, 0}};
 
     // The seed for generating output
     int seed = 2; // Chcking that our map says 64 is at index 2
@@ -45,7 +47,7 @@ public final class BasicMarkov {
     phrase.add(n);
 
     //Generate notes and add them to a phrase
-    for (int i = 0; i < 30; i++) {
+    for (int i = 0; i < 15; i++) {
 
       //Retrieve a random number between 0.0 and 1.0
       double choice = Math.random();
@@ -55,10 +57,17 @@ public final class BasicMarkov {
 
       // Check matrix left to right
       for (;output < markovMatrix.length; output++) {
+
+
         currentSum += markovMatrix[seed][output];
+
+
         if (choice <= currentSum) {
           break; // break when we've chosen right number
         }
+
+
+        System.out.print(choice);
       }
       Note note = new Note();
       note.setPitch(map[output]);
