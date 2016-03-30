@@ -1,6 +1,11 @@
 import jm.JMC;
 import jm.music.data.*;
 import jm.util.*;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 
@@ -17,6 +22,20 @@ import java.util.*;
 
 public final class BasicMarkov {
   public static void main(String[] args) {
+
+    List<String> lines = null;
+
+    try {
+      lines = Files.readAllLines(Paths.get("Test_Seed.txt"), StandardCharsets.UTF_8);
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    System.out.print(lines);
+
+
+    /**
     // A map for our musical pitches
     int[] map = {65, 67, 69, 70, 72, 74, 64};
 
@@ -82,5 +101,7 @@ public final class BasicMarkov {
     part.addPhrase(phrase);
     scr.addPart(part);
     Write.midi(scr, "basic_markov.mid");
+
+     */
   }
 }
