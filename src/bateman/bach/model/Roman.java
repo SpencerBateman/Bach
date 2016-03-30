@@ -11,7 +11,7 @@ public enum Roman {
   I, II, III, IV, V, VI, VII,
   i, ii, iii, iv, v, vi, vii;
 
-  public List<Integer> getScaleDegree() {
+  public List<Roman> getScaleDegree() {
     List scaledegrees = new ArrayList<>();
 
     switch (this) {
