@@ -1,5 +1,9 @@
+import bateman.bach.model.Roman;
 import bateman.bach.model.Seed;
 import bateman.bach.model.SeedImpl;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -9,12 +13,12 @@ import bateman.bach.model.SeedImpl;
 public final class BasicMarkov {
   public static void main(String[] args) {
 
-    Seed s = new SeedImpl("Test_Seed.txt");
+    Seed s = new SeedImpl("isthisit.txt");
 
 
 
     //System.out.println(s.getProgression());
-    System.out.println(s.getChords());
+    //System.out.println(s.getChords());
 
 
 
@@ -34,7 +38,64 @@ public final class BasicMarkov {
       aString = aString + "\n";
     }
 
-    System.out.println(aString);
+    //System.out.println(aString);
+
+
+    List map = s.getChords();
+    List song = new ArrayList<>();
+
+    double[][] markovMatrix = s.getMarkov();
+
+
+    // The seed for generating output
+    int seed = 2; // Chcking that our map says 64 is at index 2
+
+    //The output as an index value
+    int output = 0; //there are no outputs yet
+
+    song.add(s.getChords().get(seed));
+
+
+    //Generate notes and add them to a phrase
+    for (int i = 0; i < 200; i++) {
+
+      //Retrieve a random number between 0.0 and 1.0
+      double choice = Math.random();
+
+      //The current sum of weighting left to right
+      double currentSum = 0.0;
+
+      // Check matrix left to right
+      for (;output < markovMatrix.length; output++) {
+
+
+        currentSum += markovMatrix[seed][output];
+
+
+        if (choice <= currentSum) {
+          break; // break when we've chosen right number
+        }
+
+
+        //System.out.print(choice);
+
+      }
+
+      song.add(map.get(output));
+
+      //Change the seed to equal the output
+      seed = output;
+
+      //Reset the output for the next pass
+      output = 0;
+    }
+
+
+    System.out.print("\n");
+    System.out.println(song);
+
+
+
 
 
 
