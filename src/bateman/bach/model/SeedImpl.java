@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.DoubleStream;
 
 /**
  * Created by spencer on 3/30/16.
@@ -99,14 +100,73 @@ public class SeedImpl implements Seed {
     return progression;
   }
 
+  /**
+   * The each row of this array represents a chord
+   * And each double in the row represents a number of times the row chord resolves to that chord.
+   *
+   * It is currently returning a value that for one given the size of the list of chords.
+   *
+   * @return
+   */
   @Override
-  public double[][] getMarkov() {
-    return null;
+  public double[][] getRawMarkov() {
+    double[][] result = new double[chords.size()][chords.size()];
+
+    for (int a = 0; a < chords.size(); a++) {
+
+      for (int b = 0; b < chords.size(); b++) {
+
+        for (int c = 0; c < progression.size() - 1; c++) {
+          if (progression.get(c) == chords.get(a)) {
+
+            // There is a bug here
+
+            Roman landingChord = progression.get(c + 1);
+            result[a][chords.indexOf(landingChord)] += 1;
+          }
+
+        }
+      }
+
+    }
+    return result;
   }
+
+
 
   @Override
   public List<Roman> getChords() {
     return chords;
+  }
+
+  @Override
+  public double[][] getMarkov() {
+    double[][] raw = this.getRawMarkov();
+    double[][] result = new double[chords.size()][chords.size()];
+
+    for (int i = 0; i < chords.size(); i++) {
+
+      for (int j = 0; j < chords.size(); j++) {
+
+        double denominator = DoubleStream.of(raw[i]).sum();
+
+        if (!(denominator == 0.0)) {
+          result[i][j] = (raw[i][j] / denominator);
+
+        } else {
+          result[i][j] = 0.0;
+        }
+
+
+
+
+
+      }
+
+    }
+
+
+    return result;
   }
 
 

@@ -1,15 +1,5 @@
-import bateman.bach.model.Roman;
 import bateman.bach.model.Seed;
 import bateman.bach.model.SeedImpl;
-import jm.JMC;
-import jm.music.data.*;
-import jm.util.*;
-
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.*;
 
 
 /**
@@ -23,9 +13,28 @@ public final class BasicMarkov {
 
 
 
-    System.out.println(s.getProgression());
+    //System.out.println(s.getProgression());
     System.out.println(s.getChords());
-    System.out.println(s.getMarkov());
+
+
+
+
+
+    /// TESTING TO SEE IF THE ARRAY POPULATES CORRECTLY
+    double[][] a = s.getMarkov();
+    String aString = "";
+    for (int row = 0; row < a.length; row++) {
+      if (a[row] != null && a[row].length > 0) {
+        aString = aString + a[row][0];
+
+        for (int column = 1; column < a[row].length; column++) {
+          aString = aString + " " + a[row][column];
+        }
+      }
+      aString = aString + "\n";
+    }
+
+    System.out.println(aString);
 
 
 

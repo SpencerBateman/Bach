@@ -9,8 +9,11 @@ public interface Seed{
 
   List<Roman> getProgression();
 
-  double[][] getMarkov();
+  double[][] getRawMarkov();
 
   List<Roman> getChords();
+
+  double[][] getMarkov();
+
 
 }
