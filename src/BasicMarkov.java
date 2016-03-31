@@ -10,10 +10,15 @@ import java.util.List;
  * Created by spencer on 3/28/16.
  */
 
+
+/**
+ * Currently Crashes when the number of different chords is < 3
+ */
+
 public final class BasicMarkov {
   public static void main(String[] args) {
 
-    Seed s = new SeedImpl("isthisit.txt");
+    Seed s = new SeedImpl("Test_Seed.txt");
 
 
 
