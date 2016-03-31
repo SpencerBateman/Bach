@@ -1,4 +1,6 @@
 import bateman.bach.model.Roman;
+import bateman.bach.model.Seed;
+import bateman.bach.model.SeedImpl;
 import jm.JMC;
 import jm.music.data.*;
 import jm.util.*;
@@ -17,62 +19,13 @@ import java.util.*;
 public final class BasicMarkov {
   public static void main(String[] args) {
 
-    List<String> lines = null;
-
-    try {
-      lines = Files.readAllLines(Paths.get("Test_Seed.txt"), StandardCharsets.UTF_8);
-
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
-    //System.out.print(lines);
-
-    String[] str = lines.get(0).split("\\s+");
-    ArrayList<Roman> romans = new ArrayList<>();
-
-    for (int i = 0; i < str.length; i++) {
-
-      switch (str[i]) {
-        case "i": romans.add(Roman.i);
-                  break;
-        case "I": romans.add(Roman.I);
-                  break;
-        case "ii": romans.add(Roman.ii);
-                  break;
-        case "II": romans.add(Roman.II);
-                  break;
-        case "iii": romans.add(Roman.iii);
-                  break;
-        case "III": romans.add(Roman.III);
-                  break;
-        case "iv": romans.add(Roman.iv);
-                  break;
-        case "IV": romans.add(Roman.IV);
-                  break;
-        case "v": romans.add(Roman.v);
-                  break;
-        case "V": romans.add(Roman.V);
-                  break;
-        case "vi": romans.add(Roman.vi);
-                  break;
-        case "VI": romans.add(Roman.VI);
-                  break;
-        case "vii": romans.add(Roman.vii);
-                  break;
-        case "VII": romans.add(Roman.VII);
-                  break;
-      }
+    Seed s = new SeedImpl("Test_Seed.txt");
 
 
-    }
-    System.out.print(romans + "\n");
 
-    for (Roman r : romans) {
-      System.out.print(r.getScaleDegree());
-    }
-
-
+    System.out.println(s.getProgression());
+    System.out.println(s.getChords());
+    System.out.println(s.getMarkov());
 
 
 
