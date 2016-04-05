@@ -1,5 +1,7 @@
 package bateman.bach.model;
 
+import com.sun.tools.javac.util.ArrayUtils;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -33,7 +35,19 @@ public class SeedImpl implements Seed {
       e.printStackTrace();
     }
 
-    String[] str = lines.get(0).split("\\s+");
+    String[] a = new String[0];
+
+    for (int i = 0; i < lines.size(); i++) {
+      String[] test = lines.get(i).split("\\s+");
+
+      String[] str = new String[a.length + test.length];
+      System.arraycopy(a, 0, str, 0, a.length);
+      System.arraycopy(test, 0, str, a.length, test.length);
+      a = str;
+
+    }
+
+    String[] str = a;
 
 
     /**
@@ -85,6 +99,15 @@ public class SeedImpl implements Seed {
           break;
         case "VII":
           progression.add(Roman.VII);
+          break;
+        case "Isus2":
+          progression.add(Roman.Isus2);
+          break;
+        case "v7":
+          progression.add(Roman.v7);
+          break;
+        case "bVII":
+          progression.add(Roman.bVII);
           break;
       }
     }

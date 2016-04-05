@@ -9,7 +9,8 @@ import java.util.List;
  */
 public enum Roman {
   I, II, III, IV, V, VI, VII,
-  i, ii, iii, iv, v, vi, vii;
+  i, ii, iii, iv, v, vi, vii,
+  Isus2, v7, bVII;
 
   public List<Roman> getScaleDegree() {
     List scaledegrees = new ArrayList<>();
@@ -84,6 +85,24 @@ public enum Roman {
                 scaledegrees.add(3);
                 scaledegrees.add(7);
                 break;
+
+
+
+      case Isus2: scaledegrees.add(1);
+                  scaledegrees.add(3);
+                  scaledegrees.add(8);
+                  break;
+
+      case v7: scaledegrees.add(8);
+               scaledegrees.add(10);
+               scaledegrees.add(3);
+               scaledegrees.add(5);
+               break;
+
+      case bVII: scaledegrees.add(10);
+                 scaledegrees.add(3);
+                 scaledegrees.add(6);
+                 break;
 
 
 

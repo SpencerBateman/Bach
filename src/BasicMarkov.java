@@ -12,7 +12,7 @@ import java.util.List;
 
 
 /**
- * Currently Crashes when the number of different chords is < 3
+ * Crashes sometimes, don't know why
  */
 
 public final class BasicMarkov {
@@ -53,7 +53,7 @@ public final class BasicMarkov {
 
 
     // The seed for generating output
-    int seed = 2; // Chcking that our map says 64 is at index 2
+    int seed = 0; // Chcking that our map says 64 is at index 2
 
     //The output as an index value
     int output = 0; //there are no outputs yet
@@ -62,7 +62,7 @@ public final class BasicMarkov {
 
 
     //Generate notes and add them to a phrase
-    for (int i = 0; i < 200; i++) {
+    for (int i = 0; i < 5; i++) {
 
       //Retrieve a random number between 0.0 and 1.0
       double choice = Math.random();
